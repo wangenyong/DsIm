@@ -1,5 +1,6 @@
 package com.dswey.dsim;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 import com.dswey.dsim.databinding.ActivityMainBinding;
 import com.dswey.dsim.ui.contact.ContactFragment;
 import com.dswey.dsim.ui.message.MessageFragment;
+import com.dswey.dsim.ui.setting.LoginActivity;
 import com.dswey.dsim.ui.setting.SettingFragment;
 import com.ncapdevi.fragnav.FragNavController;
 import com.wangenyong.mvp.base.BaseActivity;
@@ -32,6 +34,9 @@ public class MainActivity extends BaseActivity {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         initTabBar(savedInstanceState);
+
+        Intent intent = LoginActivity.newIntent(this);
+        startActivity(intent);
     }
 
     private void initTabBar(Bundle savedInstanceState) {

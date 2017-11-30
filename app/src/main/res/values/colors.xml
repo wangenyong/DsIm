@@ -16,4 +16,6 @@
     <color name="dividerLight">#1FFFFFFF</color>
 
     <color name="windowBackground">#F1F0F6</color>
+
+    <color name="iron">#CCCCCC</color>
 </resources>
