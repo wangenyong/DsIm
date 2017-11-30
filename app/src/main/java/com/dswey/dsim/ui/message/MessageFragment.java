@@ -9,11 +9,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.dswey.dsim.R;
 import com.dswey.dsim.databinding.FragmentMessageBinding;
+import com.dswey.dsim.fixtures.DialogsFixtures;
 import com.dswey.dsim.model.Dialog;
 import com.stfalcon.chatkit.commons.ImageLoader;
 import com.stfalcon.chatkit.dialogs.DialogsListAdapter;
@@ -26,6 +26,14 @@ public class MessageFragment extends Fragment {
     private FragmentMessageBinding mBinding;
     private ImageLoader mImageLoader;
     private DialogsListAdapter<Dialog> mDialogsListAdapter;
+    private boolean isDataLoaded;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mImageLoader = (imageView, url) -> Glide.with(MessageFragment.this).load(url).into(imageView);
+        initAdapter();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,13 +47,12 @@ public class MessageFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mBinding.toolbar.setTitle(getString(R.string.tab_message));
-        mImageLoader = (imageView, url) -> Glide.with(MessageFragment.this).load(url).into(imageView);
-        initAdapter();
+        mBinding.dialogsList.setAdapter(mDialogsListAdapter, false);
     }
 
     private void initAdapter() {
         mDialogsListAdapter = new DialogsListAdapter<>(mImageLoader);
-        mBinding.dialogsList.setAdapter(mDialogsListAdapter);
+        mDialogsListAdapter.addItem(DialogsFixtures.getDialog());
     }
 
 
