@@ -18,12 +18,10 @@
             app:theme="@style/ToolbarTheme">
         </android.support.v7.widget.Toolbar>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view_message"
+        <com.stfalcon.chatkit.dialogs.DialogsList
+            android:id="@+id/dialogsList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingBottom="16dp"/>
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
 </layout>

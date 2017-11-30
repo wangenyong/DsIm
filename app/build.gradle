@@ -47,4 +47,7 @@ dependencies {
     compile 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
     compile 'com.android.support:design:26.+'
     implementation project(':mvp')
+    compile 'com.github.stfalcon:chatkit:0.2.2'
+    compile 'com.github.bumptech.glide:glide:4.3.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
 }
