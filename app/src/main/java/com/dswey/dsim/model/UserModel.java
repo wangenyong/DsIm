@@ -6,13 +6,22 @@ import android.databinding.Bindable;
 import com.dswey.dsim.BR;
 
 /**
- * Created by wangenyong on 2017/12/1.
+ *
+ * @author wangenyong
+ * @date 2017/12/1
  */
 
 public class UserModel extends BaseObservable {
     private String mName = "";
     private String mPassword = "";
     private String mPasswordAgain = "";
+
+    public UserModel() {}
+
+    public UserModel(String name, String password) {
+        mName = name;
+        mPassword = password;
+    }
 
     @Bindable
     public String getName() {
