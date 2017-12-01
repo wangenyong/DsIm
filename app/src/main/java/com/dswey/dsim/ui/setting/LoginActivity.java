@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.dswey.dsim.R;
 import com.dswey.dsim.databinding.ActivityLoginBinding;
+import com.dswey.dsim.model.UserModel;
 import com.wangenyong.mvp.base.BaseActivity;
 
 /**
@@ -16,6 +17,7 @@ import com.wangenyong.mvp.base.BaseActivity;
  */
 public class LoginActivity extends BaseActivity {
     private ActivityLoginBinding mBinding;
+    private UserModel mUserModel;
     public final static int REGISTER_CODE = 100;
 
     public static Intent newIntent(Context context) {
@@ -27,6 +29,8 @@ public class LoginActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        mUserModel = new UserModel();
+        mBinding.setUser(mUserModel);
         mBinding.setPresenter(new Presenter());
 
     }

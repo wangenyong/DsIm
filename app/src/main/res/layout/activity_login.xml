@@ -8,6 +8,10 @@
     <data>
 
         <variable
+            name="user"
+            type="com.dswey.dsim.model.UserModel"/>
+
+        <variable
             name="presenter"
             type="com.dswey.dsim.ui.setting.LoginActivity.Presenter"/>
     </data>
@@ -48,6 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="用户名"
+                    android:text="@={user.name}"
                     android:inputType="textEmailAddress"/>
             </android.support.design.widget.TextInputLayout>
 
@@ -63,6 +68,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="密码"
+                    android:text="@={user.password}"
                     android:inputType="textPassword"/>
             </android.support.design.widget.TextInputLayout>
 
