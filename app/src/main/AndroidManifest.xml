@@ -23,6 +23,10 @@
             android:name=".ui.setting.LoginActivity"
             android:theme="@style/AppTheme.Dark">
         </activity>
+        <activity
+            android:name=".ui.setting.RegisterActivity"
+            android:theme="@style/AppTheme.Dark">
+        </activity>
     </application>
 
 </manifest>
