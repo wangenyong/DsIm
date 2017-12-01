@@ -3,10 +3,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         tools:context="com.dswey.dsim.ui.setting.SettingFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -18,12 +17,15 @@
             app:theme="@style/ToolbarTheme">
         </android.support.v7.widget.Toolbar>
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view_setting"
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_logout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingBottom="16dp"/>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_alignParentBottom="true"
+            android:padding="12dp"
+            android:text="注销"/>
+    </RelativeLayout>
 
 </layout>

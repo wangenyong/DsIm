@@ -11,9 +11,11 @@ import android.view.View;
 import com.dswey.dsim.R;
 import com.dswey.dsim.databinding.ActivityLoginBinding;
 import com.dswey.dsim.im.SmackManager;
+import com.dswey.dsim.model.Constants;
 import com.dswey.dsim.model.LoginResult;
 import com.dswey.dsim.model.UserModel;
 import com.dswey.dsim.util.ValueUtil;
+import com.orhanobut.hawk.Hawk;
 import com.wangenyong.mvp.base.BaseActivity;
 import com.wangenyong.mvp.utils.UiUtil;
 import com.wangenyong.mvp.view.SimpleLoadDialog;
@@ -71,13 +73,15 @@ public class LoginActivity extends BaseActivity {
                     .subscribeOn(AndroidSchedulers.mainThread())
                     .observeOn(Schedulers.io())
                     .flatMap(userModel -> {
-                        LoginResult loginResult = SmackManager.getInstance().login(mUserModel.getName(), mUserModel.getPassword());
+                        LoginResult loginResult = SmackManager.getInstance().login(userModel.getName(), userModel.getPassword());
                         return Observable.just(loginResult);
                     })
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnNext(o -> mLoadDialog.dismiss())
                     .subscribe(loginResult -> {
                         if (loginResult.isSuccess()) {
+                            UiUtil.makeText(LoginActivity.this, "登录成功");
+                            Hawk.put(Constants.USER_DATA, loginResult);
                             LoginActivity.this.finish();
                         } else {
                             UiUtil.makeText(LoginActivity.this, loginResult.getErrorMsg());
@@ -94,5 +98,12 @@ public class LoginActivity extends BaseActivity {
         public void onRegister(View view) {
             startActivityForResult(RegisterActivity.newIntent(LoginActivity.this), REGISTER_CODE);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Constants.EXIT_ACTION);
+        sendBroadcast(intent);
+        finish();
     }
 }

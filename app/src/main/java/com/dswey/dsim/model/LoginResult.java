@@ -1,13 +1,16 @@
 package com.dswey.dsim.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author wangenyong
  * @date 2017/12/1
  */
 
-public class LoginResult {
+public class LoginResult implements Serializable {
 
+    private static final long serialVersionUID = 2442739309481246904L;
     private UserModel mUser;
     private boolean mSuccess;
     private String mErrorMsg;

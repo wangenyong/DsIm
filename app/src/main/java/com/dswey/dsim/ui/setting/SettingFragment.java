@@ -1,6 +1,7 @@
 package com.dswey.dsim.ui.setting;
 
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,9 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.dswey.dsim.MainActivity;
 import com.dswey.dsim.R;
 import com.dswey.dsim.databinding.FragmentSettingBinding;
+import com.dswey.dsim.im.SmackManager;
+import com.dswey.dsim.model.Constants;
 import com.dswey.dsim.ui.message.MessageFragment;
+import com.orhanobut.hawk.Hawk;
+import com.wangenyong.mvp.utils.UiUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,12 +38,19 @@ public class SettingFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mBinding.toolbar.setTitle(getString(R.string.tab_setting));
-    }
+        mBinding.btnLogout.setOnClickListener(view -> {
+            if (SmackManager.getInstance().logout()) {
+                UiUtil.makeText(getActivity(), "注销成功");
+                Hawk.delete(Constants.USER_DATA);
+                Intent intent = LoginActivity.newIntent(getActivity());
+                getActivity().startActivity(intent);
+            } else {
+                UiUtil.makeText(getActivity(), "注销失败");
+            }
 
-    public SettingFragment() {
-        // Required empty public constructor
-    }
 
+        });
+    }
 
     public static SettingFragment newInstance() {
         return new SettingFragment();

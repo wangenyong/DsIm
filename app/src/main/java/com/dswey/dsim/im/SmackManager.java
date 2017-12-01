@@ -145,12 +145,32 @@ public class SmackManager {
             if (!isConnected()) {
                 throw new IllegalStateException("服务器断开，请先连接服务器");
             }
-            mConnection.login(username, password);
+            if (!mConnection.isAuthenticated()) {
+                mConnection.login(username, password);
+            }
             UserModel user = new UserModel(username, password);
             return new LoginResult(user, true);
         } catch (Exception e) {
             Logger.e(TAG, e, "login failure");
             return new LoginResult(false, e.getMessage());
+        }
+    }
+
+    /**
+     * 注销
+     *
+     * @return
+     */
+    public boolean logout() {
+        if (!isConnected()) {
+            return false;
+        }
+        try {
+            mConnection.instantShutdown();
+            return true;
+        } catch (Exception e) {
+            Logger.e(TAG, e, "logout failure");
+            return false;
         }
     }
 
